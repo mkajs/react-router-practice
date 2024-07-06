@@ -4,3 +4,21 @@ export async function postsLoader() {
   );
   return { posts };
 }
+export async function usersLoader() {
+  const users = await fetch(`${import.meta.env.VITE_API_URL}/users`).then(
+    (res) => res.json()
+  );
+  return { users };
+}
+export async function userLoader({ params }) {
+  const user = await fetch(
+    `${import.meta.env.VITE_API_URL}/users/${params.id}`
+  ).then((res) => res.json());
+  return { user };
+}
+export async function todosLoader() {
+  const todos = await fetch(`${import.meta.env.VITE_API_URL}/todos`).then(
+    (res) => res.json()
+  );
+  return { todos };
+}

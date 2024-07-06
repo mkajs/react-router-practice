@@ -1,27 +1,51 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.css";
-import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./pages/ErrorPage";
-import Posts from "./pages/Posts";
-import Post from "./pages/Post";
-import { postsLoader } from "./loaders";
+import { postsLoader, todosLoader, userLoader, usersLoader } from "./loaders";
+import { Users, User, Posts, Post, ErrorPage, Todos } from "./pages";
+import AppLayout from "./AppLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <AppLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/posts",
-        element: <Posts />,
-        loader: postsLoader,
+        path: "todos",
+        element: <Todos />,
+        loader: todosLoader,
       },
       {
-        path: "/posts/:id",
-        element: <Post />,
+        path: "posts",
+        children: [
+          {
+            index: true,
+            element: <Posts />,
+            loader: postsLoader,
+          },
+
+          {
+            path: ":id",
+            element: <Post />,
+          },
+        ],
+      },
+      {
+        path: "users",
+        children: [
+          {
+            index: true,
+            element: <Users />,
+            loader: usersLoader,
+          },
+          {
+            path: ":id",
+            element: <User />,
+            loader: userLoader,
+          },
+        ],
       },
     ],
   },

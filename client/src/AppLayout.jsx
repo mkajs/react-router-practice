@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-const App = () => {
+const AppLayout = () => {
   return (
     <div className="max-w-[680px] mx-auto">
       <Navbar />
@@ -9,4 +9,4 @@ const App = () => {
     </div>
   );
 };
-export default App;
+export default AppLayout;
