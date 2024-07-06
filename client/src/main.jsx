@@ -1,12 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { postsLoader, todosLoader, userLoader, usersLoader } from "./loaders";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import {
+  postLoader,
+  postsLoader,
+  todosLoader,
+  userLoader,
+  usersLoader,
+} from "./loaders";
 import { Users, User, Posts, Post, ErrorPage, Todos } from "./pages";
 import AppLayout from "./AppLayout";
 
 const router = createBrowserRouter([
+  {
+    path: "*",
+    element: <Navigate to="/" />,
+  },
   {
     path: "/",
     element: <AppLayout />,
@@ -29,6 +43,7 @@ const router = createBrowserRouter([
           {
             path: ":id",
             element: <Post />,
+            loader: postLoader,
           },
         ],
       },

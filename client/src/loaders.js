@@ -22,3 +22,10 @@ export async function todosLoader() {
   );
   return { todos };
 }
+
+export async function postLoader({ params }) {
+  const post = await fetch(
+    `${import.meta.env.VITE_API_URL}/posts/${params.id}`
+  ).then((res) => res.json());
+  return { post };
+}

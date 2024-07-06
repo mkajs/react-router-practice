@@ -8,7 +8,7 @@ const PostCard = ({ title, body, id }) => {
       </h2>
       <div className="flex flex-row gap-3 items-center">
         <p className="">{body}</p>
-        <Link to={`/posts/:${id}`} className="btn btn-error">
+        <Link to={`/posts/${id}`} className="btn btn-error">
           See the post
         </Link>
       </div>
